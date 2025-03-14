@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(135deg, #2f56c2, #ebedee);
+                color: #333;
+                text-align: center;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 6.4rem;
+                font-weight: 700;
+                color: #222;
+                margin-bottom: 10px;
+                padding-top: 10px;
+                letter-spacing: 1px;
+                text-align: center;
+                text-shadow: #0077ff;
+            }
+
+            p {
+                font-size: 3.5rem;
+                font-weight: 400;
+                color: #555;
+                max-width: 600px;
+                line-height: 1.6;
+            }
+
+            h1::after {
+                content: "";
+                display: block;
+                width: 250px;
+                height: 4px;
+                background-color: #0e1466;
+                margin: 10px auto 0;
+                border-radius: 2px;
+                transition: width 0.3s ease;
+            }
+
+            h1:hover::after {
+                width: 80px;
+            }
+        </style>
+</head>
+<body>
+    <h1>using splice() method</h1>
+    <p id="demo"></p>
+    <p id="temp"></p>
+    <p id="temp1"></p>
+    <p id="temp2"></p>
+    <p id="temp3"></p>
+    <script>
+        let numbers = [1,2,3,4,5,6,7,8,9,10];
+
+        // remove 5 elements from index 2
+        let x = numbers.splice(2, 5); // JavaScript, Java, C++
+        document.getElementById("demo").innerHTML = x;
+        
+        // adding elements
+        let y = numbers.splice(2, 0, 11, 12, 13, 14, 15);
+        document.getElementById("temp").innerHTML = numbers;
+
+        // replacing elements
+        let z = numbers.splice(2, 3, 16, 17, 18, 19, 20);
+        document.getElementById("temp1").innerHTML = numbers;
+
+        // remove all elements from a certain index
+        let a = numbers.splice(2); // removes everything from index 2
+        document.getElementById("temp2").innerHTML = numbers;
+
+        // using splice to implement Array copy ( without modification )
+        let b = numbers.splice(0);
+        document.getElementById("temp3").innerHTML = b;
+    </script>
+</body>
+</html>

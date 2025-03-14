@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Template Strings</h1>
+<p>With back-ticks, you can use both single and double quotes inside a string:</p>
+
+<p id="demo"></p>
+<p id="demo1"></p>
+<p>Templates not supported in Internet Explorer.</p>
+
+<script>
+let text1 = `He's often called "Johnny"`;
+let len = text1.length; // SyntaxError: Unexpected token ';'
+document.getElementById("demo1").innerHTML = len;//text.length();
+let text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+document.getElementById("demo").innerHTML = text.length;
+</script>
+
+</body>
+</html>

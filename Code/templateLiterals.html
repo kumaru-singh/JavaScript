@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spread Operator - Arrow fun.</title>
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(135deg, #2f56c2, #ebedee);
+                color: #333;
+                text-align: center;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 6.4rem;
+                font-weight: 700;
+                color: #222;
+                margin-bottom: 10px;
+                padding-top: 10px;
+                letter-spacing: 1px;
+                text-align: center;
+                text-shadow: #0077ff;
+            }
+
+            p {
+                font-size: 3.5rem;
+                font-weight: 400;
+                color: #555;
+                max-width: 600px;
+                line-height: 1.6;
+            }
+
+            h1::after {
+                content: "";
+                display: block;
+                width: 500px;
+                height: 10px;
+                background-color: #0e1466;
+                margin: 10px auto 0;
+                border-radius: 10px;
+                transition: width 0.3s ease;
+            }
+
+            h1:hover::after {
+                width: 80px;
+            }
+        </style>
+</head>
+<body>
+    <h1>Template Literals</h1>
+    <p id="demo"></p>
+    <p id="temp"></p>
+    <p id="temp1"></p>
+    <p id="temp2"></p>
+    <script>
+        const person = { name:'Tyler', age:28, city:'New York' };
+        document.getElementById('demo').innerHTML = `Hi!
+            <h2>${person.name}</h2>
+            <h2>${person.age}</h2>
+            <h2>${person.city}</h2>
+        `;
+        document.getElementById('demo').style.color = 'red';
+        document.getElementById('temp').innerHTML = 'This is line one. This is line two';
+        // document.getElementById('temp').style.color = 'blue';
+        // <div>
+        //     <p>Name: ${person.name}</p>
+        //     <p>Name: ${person.age}</p>
+        // </div>
+        getName('Anupam Kumar');
+        function getName(name){
+            document.getElementById('temp1').innerHTML = `My name is ${name}`;
+        }
+        document.getElementById('temp2').innerHTML = `My name is getname()`;
+
+        
+    </script>
+</body>
+</html>

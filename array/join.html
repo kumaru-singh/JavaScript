@@ -1,0 +1,97 @@
+<!-- // convert an array into a string using a separator -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(135deg, #2f56c2, #ebedee);
+                color: #333;
+                text-align: center;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 6.4rem;
+                font-weight: 700;
+                color: #222;
+                margin-bottom: 10px;
+                padding-top: 10px;
+                letter-spacing: 1px;
+                text-align: center;
+                text-shadow: #0077ff;
+            }
+
+            p {
+                font-size: 3.5rem;
+                font-weight: 400;
+                color: #555;
+                max-width: 600px;
+                line-height: 1.6;
+                display: inline;
+            }
+             p temp {
+                display:inline;
+             }
+
+            h1::after {
+                content: "";
+                display: block;
+                width: 250px;
+                height: 4px;
+                background-color: #0e1466;
+                margin: 10px auto 0;
+                border-radius: 2px;
+                transition: width 0.3s ease;
+            }
+
+            h1:hover::after {
+                width: 80px;
+            }
+        </style>
+</head>
+<body>
+    <h1>Using join() mehtod</h1>
+    <p id="demo"></p>
+    <p id="temp"></p>
+    <p id="temp1"></p>
+    <p id="temp2"></p>
+    <p id="temp3"></p>
+    <p id="temp4"></p>
+    <script>
+        let fruits = ['banana', 'apple', 'orange', 'grape', 'kiwi', 'mango', 'pear', 'peach', 'plum', 'strawberry'];
+
+        // join all the elements of an array into a string
+        let x = fruits.join(); // JavaScript, Java, C++
+        document.getElementById("demo").innerHTML = x;
+        
+        // using space as a separator
+        let y = fruits.join(" "); //
+        document.getElementById("temp").innerHTML = y;
+
+        // using - as a separator
+        let z = fruits.join("-"); //
+        document.getElementById("temp1").innerHTML = z;
+
+        // using no space as a separator
+        let a = fruits.join(""); // removes everything from index 2
+        document.getElementById("temp2").innerHTML = a;
+
+        // using "comma space" as a separator
+        let b = fruits.join(",");
+        document.getElementById("temp3").innerHTML = b;
+
+        // using 💡 as a separator
+        let c = fruits.join("💡");
+        document.getElementById("temp4").innerHTML = c;
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(135deg, #2f56c2, #ebedee);
+                color: #333;
+                text-align: center;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 6.4rem;
+                font-weight: 700;
+                color: #222;
+                margin-bottom: 10px;
+                padding-top: 10px;
+                letter-spacing: 1px;
+                text-align: center;
+                text-shadow: #0077ff;
+            }
+
+            p {
+                font-size: 3.5rem;
+                font-weight: 400;
+                color: #555;
+                max-width: 600px;
+                line-height: 1.6;
+                display: inline;
+            }
+             p temp {
+                display:inline;
+             }
+
+            h1::after {
+                content: "";
+                display: block;
+                width: 250px;
+                height: 4px;
+                background-color: #0e1466;
+                margin: 10px auto 0;
+                border-radius: 2px;
+                transition: width 0.3s ease;
+            }
+
+            h1:hover::after {
+                width: 80px;
+            }
+        </style>
+</head>
+<body>
+    <h1>Using map(callBack) method</h1>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="temp"></p>
+    <p id="temp1"></p>
+    <p id="temp2"></p>
+    <p id="temp3"></p>
+    <p id="temp4"></p>
+    <p id="temp5"></p>
+    <p id="temp6"></p>
+    <p id="temp7"></p>
+    <p id="temp8"></p>
+    <p id="temp9"></p>
+    <p id="temp10"></p>
+    <script>
+        let numbers = [1, 2, 3, 4, 5];
+
+        //  using callBack function for strings
+        let x = numbers.map(x => x*2); 
+        let y1 = numbers.map(x => x**2);
+        document.getElementById("demo").innerHTML = x;
+        document.getElementById("demo1").innerHTML = y1;
+        document.getElementById("temp").innerHTML = numbers;
+
+
+        // capitalizing, lowercase, checking length of a string
+        let strings = ['apple', 'banana', 'orange', 'kiwi', 'mango'];
+        let y = strings.map(x => x.toUpperCase()); 
+        let z = strings.map(x => x.toLowerCase());
+        let a = strings.map(x => x.length);
+        document.getElementById("temp1").innerHTML = strings;
+        document.getElementById("temp2").innerHTML = y;
+        document.getElementById("temp3").innerHTML = z;
+        document.getElementById("temp4").innerHTML = a;
+
+        // push into nested array
+        // let nestedArr = [[1, 2], [3, 4], [5, 6]];
+        // let z = nestedArr.push([7,8]); // [7, 8]
+        // document.getElementById("temp").innerHTML = nestedArr;
+
+        // dealing with an object array
+        let objArr = [{name: 'John', age: 25}, {name: 'Jane', age: 30}, {name: 'Doe', age: 35}];
+        let b = objArr.push({name: 'shubham', age: 25}); 
+        let c = objArr.map(x => x.name);
+        let d = objArr.map(x => x.age);
+        document.getElementById("temp5").innerHTML = c;
+        document.getElementById("temp6").innerHTML = d;
+
+        let tempCelsius = [0, 20, 30]; // 0°C, 20°C, 30°C
+        let tempFahrenheit = tempCelsius.map(x => x * 9/5 + 32);
+        document.getElementById("temp7").innerHTML = tempFahrenheit;
+
+        let priceWithTax = [100, 200, 300]; // 100, 200, 300
+        let priceWithTax1 = priceWithTax.map(x => x * 1.1); // 110, 220, 330
+        document.getElementById("temp8").innerHTML = priceWithTax1;
+
+        // playing with strings
+        let str = ['apple', 'banana', 'orange', 'kiwi', 'mango'];
+        let str1 = str.map(x => x.split('').reverse().join(' '));
+        document.getElementById("temp9").innerHTML = str1;
+
+        // convert to numbers
+        let str2 = ['1', '2', '3', '4', '5'];
+        let str3 = str2.map(Number);
+        document.getElementById("temp10").innerHTML = str3;
+    
+    </script>
+</body>
+</html>

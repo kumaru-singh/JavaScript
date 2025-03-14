@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(135deg, #2f56c2, #ebedee);
+                color: #333;
+                text-align: center;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 6.4rem;
+                font-weight: 700;
+                color: #222;
+                margin-bottom: 10px;
+                padding-top: 10px;
+                letter-spacing: 1px;
+                text-align: center;
+                text-shadow: #0077ff;
+            }
+
+            p {
+                font-size: 3.5rem;
+                font-weight: 400;
+                color: #555;
+                max-width: 600px;
+                line-height: 1.6;
+            }
+
+            h1::after {
+                content: "";
+                display: block;
+                width: 9050px;
+                height: 4px;
+                background-color: #0e1466;
+                margin: 10px auto 0;
+                border-radius: 2px;
+                transition: width 0.3s ease;
+            }
+
+            h1:hover::after {
+                width: 80px;
+            }
+        </style>
+</head>
+<body>
+    <h1>Spreading element on function calls</h1>
+    <p id="demo"></p>
+    <script>
+        var x = 10;
+        if(x === 10){
+            var x = 20;
+            document.getElementById("demo").innerHTML = x;
+        }
+
+        document.getElementById("demo").innerHTML = x;
+    </script>
+</body>
+</html>

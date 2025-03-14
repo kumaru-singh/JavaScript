@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Objects</h1>
+<p>Displaying a JavaScript object will output [object Object]:</p>
+
+<p id="demo"></p>
+
+<script>
+// Create an Object
+const person = {
+  name: "John",
+  age: 30,
+  city: "New York"
+};
+
+// Build a Text
+let text1 = "";
+for (let x in person) {
+  text1 += person[x] + " ";
+};
+
+// Create an Array - Object.values()
+const myArray = Object.values(person);
+
+const fruits = {Bananas:300, Oranges:200, Apples:500};
+
+let text = "";
+for (let [fruit, value] of Object.entries(fruits)) {   // Object.entries() returns an array of a given object's own enumerable string-keyed property [key, value] pairs
+  text += fruit + ": " + value + "<br>";
+}
+
+
+// Stringify Object
+let myString = JSON.stringify(person);
+
+// Display String
+document.getElementById("demo").innerHTML = myString;
+// Display Object
+// document.getElementById("demo").innerHTML = person;
+// document.getElementById("demo").innerHTML =
+// person.name + "," + person.age + "," + person.city;
+// // Display the Text
+// document.getElementById("demo").innerHTML = text;
+// 
+// 
+;
+// Display the Array
+// document.getElementById("demo").innerHTML = myArray;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!-- // Spread operator allows an iterable to expand in places where 0+ arguments are expected. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Spread Operator</h1>
+    <p id = "demo"></p>
+    <script>
+        function sum(x, y, z){
+            return x + y + z;
+        }
+        let numbers = [1, 2, 3];
+        // Using spread Operator
+        console.log(sum(...numbers));
+        document.getElementById("demo").innerHTML = sum(...numbers);
+    </script>
+</body>
+</html>

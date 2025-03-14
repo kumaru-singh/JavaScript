@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Dates</h1>
+<h2>Using new Date()</h2>
+<p>new Date() without arguments, creates a date object with the current date and time:</p>
+
+<p id="demo"></p>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+
+
+<!-- 9 ways to create a new Date object in JavaScript:
+new Date()
+new Date(date string)
+new Date(year,month)
+new Date(year,month,day)
+new Date(year,month,day,hours)
+new Date(year,month,day,hours,minutes)
+new Date(year,month,day,hours,minutes,seconds)
+new Date(year,month,day,hours,minutes,seconds,ms)
+new Date(milliseconds) -->
+
+<script>
+const d = new Date();
+//The toDateString() method converts a date to a more readable format:
+document.getElementById("demo").innerHTML = d.toDateString();
+
+//The toUTCString() method converts a date to a UTC string (a date display standard):
+document.getElementById("demo1").innerHTML = d.toUTCString();
+
+//If you have a valid date string, you can use the Date.parse() method to convert it to milliseconds.
+//The Date.parse() method returns the number of milliseconds between the date and January 1, 1970:
+const msec = Date.parse("March 21, 2012");
+document.getElementById("demo2").innerHTML = msec;
+
+
+
+
+</script>
+
+</body>
+</html>

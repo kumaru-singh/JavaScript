@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #2f56c2, #ebedee);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 6.4rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 10px;
+            padding-top: 10px;
+            letter-spacing: 1px;
+            text-align: center;
+            text-shadow: #0077ff;
+            display: inline-block;
+        }
+
+        p {
+            font-size: 6rem;
+            font-weight: 700;
+            color: #555;
+            max-width: 600px;
+            line-height: 1.6;
+            font-size: 3.5rem;
+            
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+            width: 9050px;
+            height: 4px;
+            background-color: #0e1466;
+            margin: 10px auto 0;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        h1:hover::after {
+            width: 80px;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Spread Syntax for Object literals</h1>
+    <p id="demo"></p>
+    <script>
+        var obj1 = { name: "John", id: 301 };
+        var obj2 = {country: "USA", age:30 };
+        const employee = {...obj1, ...obj2};
+        document.write(employee.name + " is " + employee.age + " years old." );
+    </script>
+</body>
+</html>

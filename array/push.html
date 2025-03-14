@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(135deg, #2f56c2, #ebedee);
+                color: #333;
+                text-align: center;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 6.4rem;
+                font-weight: 700;
+                color: #222;
+                margin-bottom: 10px;
+                padding-top: 10px;
+                letter-spacing: 1px;
+                text-align: center;
+                text-shadow: #0077ff;
+            }
+
+            p {
+                font-size: 3.5rem;
+                font-weight: 400;
+                color: #555;
+                max-width: 600px;
+                line-height: 1.6;
+                display: inline;
+            }
+             p temp {
+                display:inline;
+             }
+
+            h1::after {
+                content: "";
+                display: block;
+                width: 250px;
+                height: 4px;
+                background-color: #0e1466;
+                margin: 10px auto 0;
+                border-radius: 2px;
+                transition: width 0.3s ease;
+            }
+
+            h1:hover::after {
+                width: 80px;
+            }
+        </style>
+</head>
+<body>
+    <h1>Using push() method</h1>
+    <p id="demo"></p>
+    <p id="temp"></p>
+    <p id="temp1"></p>
+    <p id="temp2"></p>
+    <p id="temp3"></p>
+    <p id="temp4"></p>
+    <p id="temp5"></p>
+    <p id="temp6"></p>
+    <p id="temp7"></p>
+    <p id="temp8"></p>
+    <script>
+        let numbers = [1, 2, 3, 4, 5];
+
+        //  pushing numbers
+        let x = numbers.push(6); // 6
+        // document.getElementById("demo").innerHTML = x;
+        document.getElementById("temp").innerHTML = numbers;
+
+        // pushing a string
+        let strings = ['apple', 'banana', 'orange', 'kiwi', 'mango'];
+        let y = strings.push('orange'); // undefined
+        document.getElementById("temp1").innerHTML = y;
+
+        // push into nested array
+        let nestedArr = [[1, 2], [3, 4], [5, 6]];
+        let z = nestedArr.push([7,8]); // [7, 8]
+        document.getElementById("temp2").innerHTML = nestedArr;
+
+        // remove the last element of a mixed array
+        let mixed = ['banana', 1, 'orange', 2, 'kiwi', 3, 'pear', 4, 'plum', 5];
+        let a = mixed.push(10, 'stringify',{name:'Rahul'}); 
+        document.getElementById("temp3").innerHTML = mixed.length + " " + mixed[mixed.length-1].name;
+
+        // dealing with an object array
+        let objArr = [{name: 'John', age: 25}, {name: 'Jane', age: 30}, {name: 'Doe', age: 35}];
+        let b = objArr.push({name: 'shubham', age: 25}); 
+        document.getElementById("temp4").innerHTML = objArr.length + " " + objArr[objArr.length-1].name + " " + objArr[objArr.length-1].age;
+        
+        // dealing with an empty array
+        let emptyArr = [];
+        let c = emptyArr.push(1, 2, 3, 4, 5);
+        document.getElementById("temp5").innerHTML = emptyArr.length + " " + emptyArr[emptyArr.length-1];
+    </script>
+</body>
+</html>

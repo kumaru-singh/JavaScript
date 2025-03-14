@@ -1,0 +1,46 @@
+<!-- There are 3 methods for extracting a part of a string:
+
+slice(start, end)
+substring(start, end)
+substr(start, length) --><!DOCTYPE html>
+<html>
+    <body>
+    
+    <h1>JavaScript Strings</h1>
+    <h2>The slice() Method</h2>
+    
+    <p>The sliced (extracted) part of the string is:</p>
+    <p id="demo"></p>
+    
+    <script>
+    let text1 = "Apple, Banana, Kiwi";
+
+    //slice() extracts a part of a string and returns the extracted part in a new string.
+    let part1 = text.slice(7,13);
+    document.getElementById("demo").innerHTML = part1; 
+
+
+//If a parameter is negative, the position is counted from the end of the string:
+let text2 = "Apple, Banana, Kiwi";
+let part2 = text.slice(-12);
+
+//JavaScript String substring()
+// substring() is similar to slice().
+// The difference is that start and end values less than 0 are treated as 0 in substring().
+let str2 = "Apple, Banana, Kiwi";
+let part3 = str.substring(7, 13);
+
+
+// avaScript String substr()
+// substr() is similar to slice().
+// The difference is that the second parameter specifies the length of the extracted part.
+let str = "Apple, Banana, Kiwi";
+let part = str.substr(7, 6);
+
+</script>
+    
+    </body>
+    </html>
+    
+    
+    
