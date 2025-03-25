@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+
+    <script>
+        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let oddNumbers = numbers.filter(n => n%2 !== 0);
+        document.getElementById("demo1").innerHTML = oddNumbers;
+
+        let words = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"];
+        let wordsWithFiveLetters = words.filter(w => w.length === 5);
+        document.getElementById("demo2").innerHTML = wordsWithFiveLetters;
+
+        let scores = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        let scoresAboveFifty = scores.filter(s => s > 50);
+        document.getElementById("demo3").innerHTML = scoresAboveFifty;
+    </script>
+    
+</body>
+</html>

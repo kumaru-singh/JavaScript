@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+
+    <script>
+        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let sum = numbers.reduce((acc, curr) => acc + curr);
+        document.getElementById("demo").innerHTML = sum;
+
+        let numbers2 = [1,  10];
+        let prod = numbers2.reduce((prod, num) => prod * num, 1);
+        document.getElementById("demo").innerHTML = prod;
+
+        
+    </script>
+</body>
+</html>
