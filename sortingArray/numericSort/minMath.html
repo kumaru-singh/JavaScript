@@ -7,12 +7,14 @@
 </head>
 <body>
     <p id="demo"></p>
-    <p id="demo1"></p>
     <script>
-        var fruits = ["Banana", "Orange", "Apple", "Mango"];
-        document.getElementById("demo").innerHTML = fruits;
-        fruits.sort();
-        document.getElementById("demo1").innerHTML = fruits;
+        let num = [ 34, 65, 72, 78, 12];
+        function myFunction(num){
+            return Math.min.apply(null, num);
+        }
+        
+        let minNum = myFunction(num);
+        document.getElementById("demo").innerHTML = minNum;
     </script>
 </body>
 </html>

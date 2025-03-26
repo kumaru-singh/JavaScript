@@ -7,12 +7,11 @@
 </head>
 <body>
     <p id="demo"></p>
-    <p id="demo1"></p>
     <script>
-        var fruits = ["Banana", "Orange", "Apple", "Mango"];
-        document.getElementById("demo").innerHTML = fruits;
-        fruits.sort();
-        document.getElementById("demo1").innerHTML = fruits;
+        const points = [ 34, 65, 72, 78, 12];
+        document.getElementById("demo").innerHTML = points;
+        points.sort((a,b) => b-a);
+        document.getElementById("demo").innerHTML = points;
     </script>
 </body>
 </html>

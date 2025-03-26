@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        let arr = [ 34, 65, 72, 78, 12];
+        function myArrayMax(arr){
+            let len = arr.length;
+            let max = -Infinity;
+            while(len--){
+                if ( arr[len] > max){
+                    max = arr[len];
+                }
+            }
+            return max;
+        }
+        let max = myArrayMax(arr);
+        document.getElementById("demo").innerHTML = max;
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        function myArrayMin(arr){
+            let len = arr.length;
+            let min = Infinity;
+            while(len--){
+                if ( arr[len] < min){
+                    min = arr[len];
+                }
+            }
+            return min;
+        }
+        let arr = [ 34, 65, 72, 78, 12];
+        let min = myArrayMin(arr);
+        document.getElementById("demo").innerHTML = min;
+    </script>
+    
+</body>
+</html>

@@ -8,11 +8,13 @@
 <body>
     <p id="demo"></p>
     <p id="demo1"></p>
+    <p id="demo2"></p>
+
     <script>
         var fruits = ["Banana", "Orange", "Apple", "Mango"];
         document.getElementById("demo").innerHTML = fruits;
-        fruits.sort();
-        document.getElementById("demo1").innerHTML = fruits;
+        let revFruits = fruits.toSorted();
+        document.getElementById("demo1").innerHTML = revFruits;
     </script>
 </body>
 </html>
