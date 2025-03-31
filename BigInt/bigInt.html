@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Numbers</h1>
+<h2>Create a BigInt</h2>
+
+<p id="demo"></p>
+<p id="demo1"></p>
+
+<script>
+let x = 123456789012345678901234567890n;
+let y = BigInt("123456789012345678901234567890");
+document.getElementById("demo").innerHTML = x + "<br>" + y;
+
+document.getElementById("demo1").innerHTML = typeof x ;
+</script>
+
+</body>
+</html>
+
+
+<!-- Arithmetic between a BigInt and a Number is not allowed (type conversion lose information).
+
+Unsigned right shift (>>>) can not be done on a BigInt (it does not have a fixed width).
+
+ -->
+
+ <!-- BigInt Decimals
+A BigInt can not have decimals.
+
+BigInt Division Example
+let x = 5n;
+let y = x / 2;
+// Error: Cannot mix BigInt and other types, use explicit conversion.
+let x = 5n;
+let y = Number(x) / 2; -->
