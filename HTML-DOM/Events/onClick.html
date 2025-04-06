@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript HTML Events</h1>
+<h2>The onclick Attribute</h2>
+<h2 onclick="changeText(this)">Click on this Text</h2>
+
+<script >
+    function changeText(id){
+        id.innerHTML = "Ooops!";
+        id.style.color = "red";
+        id.style.fontSize = "30px";
+        id.style.fontWeight = "bold";
+        id.style.textDecoration = "underline";
+        id.style.backgroundColor = "yellow";
+        id.style.border = "2px solid black";
+        id.style.padding = "10px";
+        id.style.margin = "10px 0";
+    }
+</script>
+</body>
+</html>
