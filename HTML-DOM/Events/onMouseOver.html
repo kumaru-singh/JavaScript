@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript HTML Events</h1>
+<h2>The onmouseover Attribute</h2>
+
+<div onmouseover="mOver(this)"
+    onmouseout="mOut(this)"
+    style="background-color:#D94A38;width:120px;height:20px;padding:40px;">
+Mouse Over this</div>
+
+<script>
+    function mOver(obj){
+        obj.style.background = "#D94A38";
+        obj.innerHTML = "Thanks for hovering!";
+    }
+
+    function mOut(obj){
+        obj.style.background = "#D94A38";
+        obj.innerHTML = "Mouse Over this";
+    }
+</script>
+
+
+</body>
+</html> 
