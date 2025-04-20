@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultra Voice Assistant</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      max-width: 480px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .btn {
+      padding: 12px 24px;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .btn:hover {
+      transform: scale(1.08);
+    }
+    select {
+      padding: 5px;
+      margin-top: 8px;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+    .panel p {
+      font-size: 1.1em;
+      margin: 10px 0;
+    }
+    .three-d-glow {
+      margin: 20px auto;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      border-radius: 20px;
+      box-shadow: 0 0 20px #f0a, 0 0 60px #f0a, 0 0 90px #f0a;
+      animation: rotate 6s infinite linear;
+    }
+    @keyframes rotate {
+      0% { transform: rotateX(0) rotateY(0); }
+      100% { transform: rotateX(360deg) rotateY(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚡ Ultra Voice Assistant</h1>
+    <div class="three-d-glow"></div>
+    <button class="btn" onclick="startListening()">Start Listening</button>
+    <div class="panel">
+      <p><strong>You said:</strong> <span id="transcript">...</span></p>
+      <p><strong>Response:</strong> <span id="response">...</span></p>
+      <p><strong>Weather:</strong> <span id="weather">...</span></p>
+      <div>
+        <label>Language:</label>
+        <select id="lang-select">
+          <option value="en-US">English (US)</option>
+          <option value="hi-IN">Hindi</option>
+          <option value="ja-JP">Japanese</option>
+        </select>
+      </div>
+      <div>
+        <label>Voice:</label>
+        <select id="voice-select"></select>
+      </div>
+      <div>
+        <label>Speed:</label>
+        <select id="rate-select">
+          <option value="0.75">Slow</option>
+          <option value="1">Normal</option>
+          <option value="1.5">Fast</option>
+        </select>
+      </div>
+      <div>
+        <label>Pitch:</label>
+        <select id="pitch-select">
+          <option value="0.75">Low</option>
+          <option value="1">Normal</option>
+          <option value="1.5">High</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <script>
+    const transcriptEl = document.getElementById('transcript');
+    const responseEl = document.getElementById('response');
+    const weatherEl = document.getElementById('weather');
+    const langSelect = document.getElementById('lang-select');
+    const voiceSelect = document.getElementById('voice-select');
+    const rateSelect = document.getElementById('rate-select');
+    const pitchSelect = document.getElementById('pitch-select');
+
+    let voices = [];
+    const synth = window.speechSynthesis;
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+    function populateVoices() {
+      voices = synth.getVoices();
+      voiceSelect.innerHTML = '';
+      voices.forEach((voice, i) => {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = `${voice.name} (${voice.lang})`;
+        voiceSelect.appendChild(option);
+      });
+    }
+
+    populateVoices();
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = populateVoices;
+    }
+
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.voice = voices[voiceSelect.value] || voices[0];
+      utter.lang = langSelect.value;
+      utter.rate = parseFloat(rateSelect.value);
+      utter.pitch = parseFloat(pitchSelect.value);
+      synth.speak(utter);
+    }
+
+    function fetchWeather(query) {
+      const cities = {
+        tokyo: { lat: 35.69, lon: 139.69 },
+        delhi: { lat: 28.61, lon: 77.23 },
+        mumbai: { lat: 19.07, lon: 72.87 },
+        london: { lat: 51.51, lon: -0.13 },
+        "new york": { lat: 40.71, lon: -74.01 },
+        paris: { lat: 48.85, lon: 2.35 },
+        osaka: { lat: 34.69, lon: 135.50 },
+      };
+      const city = Object.keys(cities).find(c => query.toLowerCase().includes(c)) || 'tokyo';
+      const loc = cities[city];
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&current_weather=true`)
+        .then(res => res.json())
+        .then(data => {
+          const w = data.current_weather;
+          const info = `${city.toUpperCase()}: ${w.temperature}°C, ${w.windspeed} km/h wind`;
+          weatherEl.textContent = info;
+          speak(info);
+        })
+        .catch(() => {
+          const errorMsg = 'Weather fetch failed';
+          weatherEl.textContent = errorMsg;
+          speak(errorMsg);
+        });
+    }
+
+    function startListening() {
+      recognition.lang = langSelect.value;
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.start();
+      recognition.onresult = (e) => {
+        const said = e.results[0][0].transcript;
+        transcriptEl.textContent = said;
+        const res = `You said: ${said}`;
+        responseEl.textContent = res;
+        speak(res);
+        fetchWeather(said);
+      };
+    }
+  </script>
+</body>
+</html>

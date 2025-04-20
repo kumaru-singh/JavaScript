@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultra Voice Assistant + Call</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f1115;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      padding: 20px;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 1.8em;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 5px;
+      background: #0072ff;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #005ed6;
+    }
+    video {
+      width: 45%;
+      max-width: 300px;
+      margin: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    textarea {
+      width: 90%;
+      margin-top: 5px;
+      border-radius: 6px;
+      padding: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎙️ Ultra Voice Assistant</h1>
+    <button class="btn" onclick="startListening()">Start Listening</button>
+    <p><strong>You said:</strong> <span id="transcript">...</span></p>
+    <p><strong>Response:</strong> <span id="response">...</span></p>
+    <p><strong>Weather:</strong> <span id="weather">...</span></p>
+  </div>
+  <div class="container">
+    <h1>📞 Real-Time Call</h1>
+    <video id="localVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video>
+    <button class="btn" onclick="startCall()">Start Call</button>
+    <button class="btn" onclick="answerCall()">Answer Call</button>
+    <textarea id="offer" placeholder="Paste offer here"></textarea>
+    <textarea id="answer" placeholder="Copy this answer after answering"></textarea>
+  </div>
+  <script>
+    const transcriptEl = document.getElementById('transcript');
+    const responseEl = document.getElementById('response');
+    const weatherEl = document.getElementById('weather');
+    const synth = window.speechSynthesis;
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      synth.speak(utter);
+    }
+
+    function fetchWeather(query) {
+      const cities = {
+        tokyo: { lat: 35.69, lon: 139.69 },
+        delhi: { lat: 28.61, lon: 77.23 },
+        mumbai: { lat: 19.07, lon: 72.87 },
+        london: { lat: 51.51, lon: -0.13 },
+        "new york": { lat: 40.71, lon: -74.01 },
+        paris: { lat: 48.85, lon: 2.35 },
+        osaka: { lat: 34.69, lon: 135.50 },
+      };
+      const city = Object.keys(cities).find(c => query.toLowerCase().includes(c)) || 'tokyo';
+      const loc = cities[city];
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&current_weather=true`)
+        .then(res => res.json())
+        .then(data => {
+          const w = data.current_weather;
+          weatherEl.textContent = `${city.toUpperCase()}: ${w.temperature}°C, ${w.windspeed} km/h wind`;
+        })
+        .catch(() => weatherEl.textContent = 'Weather fetch failed');
+    }
+
+    function startListening() {
+      recognition.lang = 'en-US';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.start();
+      recognition.onresult = (e) => {
+        const said = e.results[0][0].transcript;
+        transcriptEl.textContent = said;
+        responseEl.textContent = `You said: ${said}`;
+        speak(`You said: ${said}`);
+        fetchWeather(said);
+      };
+    }
+
+    const localVideo = document.getElementById('localVideo');
+    const remoteVideo = document.getElementById('remoteVideo');
+    const offerTextarea = document.getElementById('offer');
+    const answerTextarea = document.getElementById('answer');
+    let localStream, remoteStream, peerConnection;
+
+    const servers = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+
+    async function initMedia() {
+      localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      remoteStream = new MediaStream();
+      localVideo.srcObject = localStream;
+      remoteVideo.srcObject = remoteStream;
+      localStream.getTracks().forEach(track => {
+        if (peerConnection) peerConnection.addTrack(track, localStream);
+      });
+    }
+
+    async function startCall() {
+      peerConnection = new RTCPeerConnection(servers);
+      remoteStream = new MediaStream();
+      peerConnection.ontrack = e => e.streams[0].getTracks().forEach(t => remoteStream.addTrack(t));
+      await initMedia();
+      const offer = await peerConnection.createOffer();
+      await peerConnection.setLocalDescription(offer);
+      offerTextarea.value = JSON.stringify(offer);
+    }
+
+    async function answerCall() {
+      peerConnection = new RTCPeerConnection(servers);
+      remoteStream = new MediaStream();
+      peerConnection.ontrack = e => e.streams[0].getTracks().forEach(t => remoteStream.addTrack(t));
+      await initMedia();
+      const offer = JSON.parse(offerTextarea.value);
+      await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+      const answer = await peerConnection.createAnswer();
+      await peerConnection.setLocalDescription(answer);
+      answerTextarea.value = JSON.stringify(answer);
+    }
+
+    window.setRemoteDescription = (answerJson) => {
+      const answer = JSON.parse(answerJson);
+      peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+    }
+  </script>
+</body>
+</html>

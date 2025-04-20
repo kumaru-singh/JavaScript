@@ -71,7 +71,7 @@ function processCommand(input) {
 function speak(text) {
     const synth = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "ja";
+    utterance.lang = "en";
     utterance.rate = 1; // Speed of speech
     utterance.pitch = 1; // Pitch of voice
     synth.speak(utterance);
