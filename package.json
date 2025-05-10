@@ -1,0 +1,15 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "**Sets are a new object type introduced in ES6 (ES2015) that allow the creation of collections of unique values. The values in a set can be either simple primitives like strings or integers, but more complex object types like object literals or arrays can also be part of a set.**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
