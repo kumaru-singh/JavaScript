@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width:400px;
+            height:400px;
+            position:relative;
+            background: yellow;
+        }
+
+        #animate{
+            width:50px;
+            height:50px;
+            position:absolute;
+            background:red;
+        }
+    </style>
+</head>
+<body>
+    <h2>My First JavaScript Animation</h2>
+    <div id="container">
+        <div id="animate"></div>
+    </div>
+</body>
+</html>
+
+/my-app
+│
+├── backend/                        # Express + PostgreSQL + Prisma/pg ORM
+│   ├── src/
+│   │   ├── controllers/           # Business logic
+│   │   │   └── user.controller.js
+│   │   │   └── auth.controller.js
+│   │   │   └── post.controller.js
+│   │   │   └── payment.controller.js
+│   │   │
+│   │   ├── routes/                # Express routes
+│   │   │   └── user.routes.js
+│   │   │   └── auth.routes.js
+│   │   │   └── post.routes.js
+│   │   │
+│   │   ├── middleware/            # Auth, Error handling, Logging
+│   │   │   └── auth.middleware.js
+│   │   │   └── error.middleware.js
+│   │   │   └── logger.middleware.js
+│   │   │
+│   │   ├── models/                # Sequelize/Prisma models
+│   │   │   └── user.model.js
+│   │   │   └── post.model.js
+│   │   │
+│   │   ├── services/              # Reusable services (JWT, Mailer, etc)
+│   │   │   └── jwt.service.js
+│   │   │   └── email.service.js
+│   │   │   └── stripe.service.js
+│   │   │
+│   │   ├── utils/                 # Helper functions
+│   │   │   └── validators.js
+│   │   │   └── hash.js
+│   │   │
+│   │   ├── config/                # DB config, env, secrets
+│   │   │   └── db.config.js
+│   │   │   └── env.config.js
+│   │   │   └── cors.config.js
+│   │   │
+│   │   ├── prisma/                # Prisma schema and migrations
+│   │   │   └── schema.prisma
+│   │   │   └── migrations/
+│   │   │
+│   │   ├── index.js               # App entry point (Express setup)
+│   │   └── app.js                 # App config and middleware
+│   │
+│   ├── .env                       # Backend env variables
+│   ├── package.json
+│   ├── README.md
+│   └── nodemon.json
+│
+├── frontend/                      # React (Vite or CRA) frontend
+│   ├── public/                    # Static files
+│   │   └── index.html
+│   │   └── favicon.svg
+│   │
+│   ├── src/
+│   │   ├── assets/                # Images, logos, svgs
+│   │   │   └── logo.png
+│   │   │
+│   │   ├── components/            # Reusable components
+│   │   │   └── Button.jsx
+│   │   │   └── Navbar.jsx
+│   │   │   └── ProtectedRoute.jsx
+│   │   │
+│   │   ├── pages/                 # Page components
+│   │   │   └── Home.jsx
+│   │   │   └── Login.jsx
+│   │   │   └── Dashboard.jsx
+│   │   │   └── Profile.jsx
+│   │   │
+│   │   ├── layout/                # Common UI layout
+│   │   │   └── MainLayout.jsx
+│   │   │   └── AuthLayout.jsx
+│   │   │
+│   │   ├── services/              # Axios config, API wrappers
+│   │   │   └── api.js
+│   │   │   └── authService.js
+│   │   │   └── postService.js
+│   │   │
+│   │   ├── context/               # React context (auth, theme)
+│   │   │   └── AuthContext.jsx
+│   │   │
+│   │   ├── hooks/                 # Custom React hooks
+│   │   │   └── useAuth.js
+│   │   │   └── useFetch.js
+│   │   │
+│   │   ├── utils/                 # Utility functions
+│   │   │   └── formatDate.js
+│   │   │
+│   │   ├── styles/                # Global styles, Tailwind or CSS modules
+│   │   │   └── index.css
+│   │   │
+│   │   ├── App.jsx
+│   │   ├── main.jsx               # Entry point (Vite)
+│   │   ├── router.jsx             # React Router setup
+│   │
+│   ├── .env                       # Frontend env variables (REACT_APP_*)
+│   ├── package.json
+│   └── vite.config.js             # or CRA config (if used)
+│
+├── docker-compose.yml            # Optional Docker setup
+├── nginx.conf                    # For NGINX reverse proxy (prod deploy)
+├── README.md
+└── .gitignore
