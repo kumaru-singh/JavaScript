@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sliding Drawer Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Main content */
+    .main-content {
+      padding: 20px;
+    }
+
+    /* Drawer styling */
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: -500px; /* Hidden initially */
+      width: 100px;
+      height: 100%;
+      background-color: #f0f0f0;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+
+    /* Drawer open state */
+    .drawer.open {
+      right: 0;
+    }
+
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Open button */
+    .open-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-content">
+    <h1>My Web Page</h1>
+    <p>This is a basic page with a sliding drawer.</p>
+    <button class="open-btn" onclick="openDrawer()">Open Drawer</button>
+  </div>
+
+  <!-- Drawer -->
+  <div class="drawer" id="myDrawer">
+    <button class="close-btn" onclick="closeDrawer()">✕</button>
+    <h2>Drawer Panel</h2>
+    <p>This drawer slides in from the right.</p>
+  </div>
+
+  <script>
+    function openDrawer() {
+      document.getElementById("myDrawer").classList.add("open");
+    }
+
+    function closeDrawer() {
+      document.getElementById("myDrawer").classList.remove("open");
+    }
+  </script>
+
+</body>
+</html>

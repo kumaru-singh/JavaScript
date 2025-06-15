@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Keep-Style Drawer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #f1f3f4;
+    }
+
+    /* Sidebar drawer */
+    .sidebar {
+      width: 150px;
+      background-color: white;
+      border-right: 1px solid #ddd;
+      transition: width 0.3s;
+      overflow: hidden;
+      position: fixed;
+      height: 100vh;
+      z-index: 100;
+    }
+
+    .sidebar.collapsed {
+      width: 0px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding-top: 20px;
+    }
+
+    .sidebar li {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .sidebar li:hover {
+      background-color: #f0f0f0;
+    }
+
+    .sidebar i {
+      font-size: 20px;
+      margin-right: 16px;
+      width: 24px;
+      text-align: center;
+    }
+
+    .sidebar.collapsed span {
+      display: none;
+    }
+
+    /* Toggle button */
+    .toggle-btn {
+      position: absolute;
+      top: 10px;
+      left: 250px;
+      font-size: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      cursor: pointer;
+      z-index: 200;
+    }
+
+    .collapsed + .toggle-btn {
+      left:00px;
+    }
+
+    /* Main content */
+    .content {
+      margin-left: 240px;
+      padding: 20px;
+      flex: 1;
+      transition: margin-left 0.3s;
+    }
+
+    .sidebar.collapsed ~ .content {
+      margin-left: 72px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Drawer -->
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><i class="fas fa-lightbulb"></i><span>Notes</span></li>
+      <li><i class="fas fa-bell"></i><span>Reminders</span></li>
+      <li><i class="fas fa-archive"></i><span>Archive</span></li>
+      <li><i class="fas fa-trash"></i><span>Trash</span></li>
+    </ul>
+  </div>
+
+  <!-- Toggle Button -->
+  <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>Google Keep Clone</h1>
+    <p>This is the main content area. The sidebar behaves like Google Keep's drawer.</p>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("collapsed");
+    }
+  </script>
+
+</body>
+</html>
